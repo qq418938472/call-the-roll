@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无敌点名器</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.content{
+			width: 440px;
+			height: 400px;
+			margin: 0 auto;
+			background: url(3.png) no-repeat;
+			background-size: 90%;
+			position: relative;
+		}
+		body{
+			margin: 0;
+			padding: 0;
+			background: url(4.png) no-repeat center;
+		}
+		.title1{
+			width: 372px;
+			position: absolute;
+			top:163px;
+			left: -330px;
+			font-size: 50px;
+		}
+		.title2{
+			width: 372px;
+			position: absolute;
+			top:163px;
+			right: -292px;
+			font-size: 50px;
+		}
+		.title3{
+			width: 296px;
+			position: absolute;
+			top:122px;
+			right: -228px;
+			font-size: 50px;
+		}
+		.p1{
+			position: absolute;
+			top: 100px;
+			left: 65px;
+			width: 162px;
+			height: 150px;
+			font-family: '微软雅黑';
+			font-size: 125px;
+			color:black;
+			text-align: center;
+		}
+		.p2{
+			position: absolute;
+			top: 100px;
+			right: 115px;
+			width: 162px;
+			height: 150px;
+			font-family: '微软雅黑';
+			font-size: 125px;
+			color:black;
+			text-align: center;
+		}
+		.bottom{
+			width: 475px;
+			margin: 50px auto;
+		}
+		.bottom_topA{
+			margin: -44px 0 0 44px;
+			font-size: 41px;
+		}
+		.bottom_topB{
+			width: 100px;
+			height: 47px;
+			font-size: 50px;
+		}
+		.bottom_topC{
+			width: 80px;
+			height: 50px;
+			margin: 0 3px 0 0;
+			font-size: 27px;
+			float: right;
+			background: #FDDD18;
+			border: 1px solid black;
+			border-radius: 5px;
+		}
+		.bottom_topD{
+			width: 85px;
+			height: 50px;
+			margin: 0 5px 0 4px;
+			font-size: 27px;
+			float: right;
+			background: #FDDD18;
+			border: 1px solid black;
+			border-radius: 5px;
+		}
+		.bottom_topE{
+			width: 85px;
+			height: 50px;
+			margin: 0 5px 0 4px;
+			font-size: 27px;
+			float: right;
+			background: #FDDD18;
+			border: 1px solid black;
+			border-radius: 5px;
+		}
+		.bottom_topF{
+			width: 85px;
+			height: 50px;
+			margin: 0 5px 0 4px;
+			font-size: 27px;
+			float: right;
+			background: #FDDD18;
+			border: 1px solid black;
+			border-radius: 5px;
+		}
+	</style>
+	<script type="text/javascript" src="./js/jquery-1.8.3.min.js"></script>
+	<script>
+		$(function(){
+			var int_number1=0;
+			var int_number2=0;
+			$('body').on('click','.bottom_topC',function(){
+				if (int_number2==1 && int_number1==1) {
+					$('.title2').attr('src','图片4.png').attr('class','title3');
+				}
+				var $a = $(".bottom_topB").val();
+				var c = Math.floor($a/10);
+				var b = $a%10;
+				int_number1=0;
+				int_number2=0;
+				if(c>=10){
+					alert('有没有那么多同学啊？')
+					return 1;
+				}
+				var int1 = setInterval(function(){
+					var d = Math.floor(Math.random()*(c+1));
+					$('.p1').html(d);
+				},10)
+				var int2 = setInterval(function(){
+					if ($a >= 10) {
+						var e = Math.floor(Math.random()*10);
+						$('.p2').html(e);
+					}
+				},10)
+				$('body').on('click','#gewei',function(){
+					clearInterval(int2);
+					int_number1 = 1;
+					if (int_number2==1 && int_number1==1) {
+						$('.title2').attr('src','图片3.png').attr('class','title2')
+						$('.title3').attr('src','图片3.png').attr('class','title2')
+					}
+				})
+				$('body').on('click','#shiwei',function(){
+					clearInterval(int1);
+					int_number2 = 1;
+					if (int_number2==1 && int_number1==1) {
+						$('.title2').attr('src','图片3.png').attr('class','title2')
+						$('.title3').attr('src','图片3.png').attr('class','title2')
+					}
+				})
+				$('body').on('click','#tingzhi',function(){
+					clearInterval(int1);
+					clearInterval(int2);
+					int_number1 = 1;
+					int_number2 = 1;
+					if (int_number2==1 && int_number1==1) {
+						$('.title2').attr('src','图片3.png').attr('class','title2')
+						$('.title3').attr('src','图片3.png').attr('class','title2')
+					}
+				})
+			})
+		})
+	</script>
+</head>
+<body>
+	<div class="content">
+		<!-- <img src="图片1.png"> -->
+		<img class="title1" src="图片1.png">
+		<img class="title2" src="图片1.png"></p>
+		<p class="p1">9</p>
+		<p class="p2">9</p>
+	</div>
+	<div class="bottom">
+		<p class="bottom_topA">请输入班级学号人数</p>
+		<input class="bottom_topB" type="text">
+		<input class="bottom_topF" id="tingzhi" type="button" value="停止">
+		<input class="bottom_topD" id="gewei" type="button" value="停个位">
+		<input class="bottom_topE" id="shiwei" type="button" value="停十位">
+		<input class="bottom_topC" type="button" value="开始">
+	</div>
+</body>
+</html>
